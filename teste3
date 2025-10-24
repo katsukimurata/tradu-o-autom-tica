@@ -1,0 +1,49 @@
+Um colega seu está precisando de ajuda para implementar uma tabela de hash em Linguagem C. Ele quer guardar números inteiros e, para isso, precisa determinar o índice de inserção na tabela, fazer a devida inserção e tratar colisões. Ao explicar para ele quais a possíveis estratégias para o tratamento de colisões, ele preferiu fazer por listas ligadas. Você criou, então, as structs Node e HashTable para implementar, respectivamente, a lista ligada e a tabela de Hash. A ideia é que, ao final das inserções, seja impresso o estado em que ficou a tabela, ilustrando as possíveis listas ligadas, mas a função para isso já está implementada.
+Suas tarefas são:
+Implementar a função create_table que recebe a especificação do tamanho dela e instancia adequadamente uma tabela, inclusive preenchendo seu tamanho e inicializando cada ponteiro como NULL.
+Implementar a função hash que recebe o ponteiro para uma tabela e uma chave a ser inserida (inteiro) e calcula o índice via resto da divisão pelo tamanho da tabela.
+Implementar a função insert que recebe o ponteiro para uma tabela e uma chave a ser inserida (inteiro), obtém o índice de inserção e insere, tratando uma possível colisão ao inserir o novo valor no FINAL da lista ligada.
+
+
+teste
+int TABLE_SIZE = 13;
+HashTable *tabela = create_table(TABLE_SIZE);
+int chaves[9] ={44, 45, 49, 70, 27, 73, 92, 97, 95};
+for(int i = 0; i < 9; i++){
+    insert(tabela,chaves[i]);
+}
+print_table(tabela);
+free_table(tabela);
+
+resultado
+0 -> \
+1 -> 27 -> 92 -> \
+2 -> \
+3 -> \
+4 -> 95 -> \
+5 -> 44 -> 70 -> \
+6 -> 45 -> 97 -> \
+7 -> \
+8 -> 73 -> \
+9 -> \
+10 -> 49 -> \
+11 -> \
+12 -> \
+
+
+
+codigo
+#include "hash.h"
+
+HashTable* create_table(int size) {
+    /*Insira seu código aqui*/
+    
+}
+
+int hash(HashTable *ht, int key) {
+    /*Insira seu código aqui*/
+}
+
+void insert(HashTable *ht, int key) {
+    /*Insira seu código aqui*/
+}
