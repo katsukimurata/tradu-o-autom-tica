@@ -1,0 +1,72 @@
+Em uma consultoria, você se deparou com a seguinte situação:
+
+A empresa XPTO possui um sistema legado, cujos dados de funcionários estão guardados em um arquivo binário construído por um programa em linguagem C.
+
+Esses dados estão estruturados de acordo com a seguinte struct:
+
+typedef struct {
+  char nome[52];
+  int codigo;
+  float salario;
+} Funcionario;
+
+Este arquivo está estruturado como mostrado na figura a seguir:
+
+O primeiro valor (do tipo int), é um contador que armazena quantas vezes os dados presentes no arquivo foram editados. Já os demais registros, são sempre valores do tipo struct Funcionario.
+Você deve completar o código da função alterar_funcionario, que possui a seguinte assinatura:
+void alterar_funcionario(char *nome_arquivo, int codigo_busca, float novo_salario)
+A função recebe uma string nome_arquivo, contendo o nome do arquivo, um inteiro codigo_busca, que é o código do funcionário que deseja-se editar, e um float novo_salario, que é o valor do novo salário que deverá ser armazenado no registro deste funcionário, caso ele exista. Além disso, caso o funcionário exista e o seu salário seja editado, você deve incrementar o valor do inteiro que é o primeiro valor contido no arquivo. Já no caso do funcionário não existir, nada deve ser alterado. Considere também que os códigos dos funcionários são únicos.
+Não modifique as assinaturas das funções. Você não pode utilizar nenhuma estrutura de dados auxiliar (arrays, listas alocadas dinamicamente, etc). As buscas devem ser realizadas percorrendo o arquivo sequencialmente.
+A sua implementação deve ser genérica o suficiente para funcionar com um número arbitrário de registros no arquivo, e não apenas os 6 existentes nos testes. Além disso, nenhum valor novo deve ser acrescentado ao arquivo, ou seja, o seu código deve somente substituir valores já existentes.
+
+
+teste 
+char nome_arq[] = "dados.dat";
+
+    #include "copia.c"
+
+    alterar_funcionario(nome_arq, 101, 4123.45);
+    alterar_funcionario(nome_arq, 106, 1000.00);
+    alterar_funcionario(nome_arq, 107, 5695.00);
+    
+    int qtdAlteracoes;
+    Funcionario func;
+    FILE *arq = fopen(nome_arq, "rb");
+    fread(&qtdAlteracoes, sizeof(int), 1, arq);
+    printf("%d\n", qtdAlteracoes);
+    fread(&func, sizeof(Funcionario), 1, arq);
+    printf("%s, %d, %.2f\n", func.nome, func.codigo, func.salario);
+    fread(&func, sizeof(Funcionario), 1, arq);
+    printf("%s, %d, %.2f\n", func.nome, func.codigo, func.salario);
+    fread(&func, sizeof(Funcionario), 1, arq);
+    printf("%s, %d, %.2f\n", func.nome, func.codigo, func.salario);
+    fread(&func, sizeof(Funcionario), 1, arq);
+    printf("%s, %d, %.2f\n", func.nome, func.codigo, func.salario);
+    fread(&func, sizeof(Funcionario), 1, arq);
+    printf("%s, %d, %.2f\n", func.nome, func.codigo, func.salario);
+    fread(&func, sizeof(Funcionario), 1, arq);
+    printf("%s, %d, %.2f\n", func.nome, func.codigo, func.salario);
+    
+    fclose(arq);
+
+
+resultado 
+
+2
+Ana Silva, 101, 4123.45
+Bruno Costa, 102, 4200.75
+Carla Mendes, 103, 3900.00
+Diego Souza, 104, 5100.10
+Eduarda Lima, 105, 4700.25
+Felipe Torres, 107, 5695.00
+
+
+
+#include "funcionario.h"
+
+void alterar_funcionario(char *nome_arquivo, int codigo_busca, float novo_salario) {
+    // implemente a lógica solicitada no enunciado aqui
+    
+    
+
+}
