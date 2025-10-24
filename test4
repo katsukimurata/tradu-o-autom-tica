@@ -1,0 +1,62 @@
+questao 3
+Suponha que inserimos em uma tabela hash, nesta ordem, as 10 chaves a seguir: 25, 60, 119, 81, 14, 39, 45, 20, 63, 89. A tabela está inicialmente vazia e tem TABLE_SIZE = 11. Suponha que usamos a função de hashing que obtem o resto da divisão da chave pelo TABLE_SIZE.
+O número de chaves que demandaram tratamento de colisão ao serem inseridas com endereçamento aberto e sondagem linear foi:
+*
+6 pontos
+5
+0
+3
+1
+4
+
+
+
+questao0
+Analise as seguintes afirmações sobre tabelas Hash:
+I) Uma tabela hash utiliza uma função de hash para transformar uma chave em um índice de armazenamento no vetor.
+II) Uma boa função de hash deve distribuir as chaves uniformemente entre os índices disponíveis.
+III) O método da divisão nunca utiliza o operador de módulo.
+IV) A sondagem linear resolve colisões substituindo o valor antigo pelo novo.
+V) O desempenho médio de uma tabela hash é O(1) para inserção, busca e remoção, desde que a função de hash seja eficiente e o fator de carga seja controlado.
+São corretas apenas as afirmações:
+*
+6 pontos
+I, II e V
+III e V
+I e II
+I, III e IV
+III, IV e V
+
+
+
+questao1
+Empolgado com o funcionamento das AVLs, um aluno resolveu testá-la para guardar nomes das cidades que ele visitou em vez de números, utilizando a ordem lexicográfica das
+palavras como critério para decidir se uma chave é maior ou menor que a outra. Por exemplo, Amparo < Estoril < Evora.
+Suponha que a sequência de cidades inseridas foi: Dallas, Cairo, Boston, Lisboa, Helsinki, Denver, Porto, Tocha.
+Nessa sequência de inserção, as quantidades necessárias de rotações RR, LL, RL e LR são, respectivamente:
+*
+6 pontos
+2, 2, 1, 1
+2, 0, 1, 0
+1, 1, 2, 0
+1, 1, 1, 1
+1, 1, 2, 2
+
+
+
+Questão 2 - Considere a função abaixo, escrita em linguagem C, que recebe o ponteiro para o primeiro nó de uma lista encadeada simples.
+Considere também as seguintes listas encadeadas:
+listaA: 10 -> 20 -> 30 -> 40 -> 50 -> NULL
+listaB: 5 -> 15 -> 25 -> 35 -> 45 -> 55 -> NULL
+O que faz a função e quais nós serão retornados ao passar listaA e listaB para a função, respectivamente?
+typedef struct No {
+int valor;
+struct No* prox;
+} No;
+No* funcao No* lista {
+No *p1 = lista, *p2 = lista;
+while (p2 != NULL && p2->prox != NULL) {
+p1 = p1-›prox;
+p2 = p2->prox->prox;
+｝
+return
