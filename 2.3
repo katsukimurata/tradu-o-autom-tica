@@ -1,0 +1,37 @@
+#include "hash.h"
+
+HashTable* create_table(int size) {
+    HashTable *ht = (HashTable*) malloc(sizeof(HashTable));
+    ht->size = size;
+    ht->table = (Node**) malloc(size * sizeof(Node*));
+
+    for (int i = 0; i < size; i++) {
+        ht->table[i] = NULL; // inicializa todas as posições com NULL
+    }
+
+    return ht;
+}
+
+int hash(HashTable *ht, int key) {
+    return key % ht->size; // resto da divisão → índice
+}
+
+void insert(HashTable *ht, int key) {
+    int index = hash(ht, key);
+
+    Node *novo = (Node*) malloc(sizeof(Node));
+    novo->key = key;
+    novo->next = NULL;
+
+    // Caso a posição esteja vazia, insere direto
+    if (ht->table[index] == NULL) {
+        ht->table[index] = novo;
+    } else {
+        // Caso contrário, percorre até o fim da lista
+        Node *aux = ht->table[index];
+        while (aux->next != NULL) {
+            aux = aux->next;
+        }
+        aux->next = novo;
+    }
+}
