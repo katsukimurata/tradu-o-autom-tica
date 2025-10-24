@@ -1,0 +1,35 @@
+#include "funcionario.h"
+#include <stdio.h>
+
+void alterar_funcionario(char *nome_arquivo, int codigo_busca, float novo_salario) {
+    FILE *arq = fopen(nome_arquivo, "rb+"); // leitura e escrita binária
+    if (arq == NULL) {
+        return; // se não conseguir abrir, apenas sai
+    }
+
+    int contador;
+    fread(&contador, sizeof(int), 1, arq); // lê o contador inicial
+
+    Funcionario func;
+    while (fread(&func, sizeof(Funcionario), 1, arq) == 1) {
+        if (func.codigo == codigo_busca) {
+            // Achou o funcionário → atualiza o salário
+            func.salario = novo_salario;
+
+            // Volta o ponteiro para regravar o registro
+            fseek(arq, -((long)sizeof(Funcionario)), SEEK_CUR);
+            fwrite(&func, sizeof(Funcionario), 1, arq);
+
+            // Incrementa o contador no início do arquivo
+            contador++;
+            fseek(arq, 0, SEEK_SET);
+            fwrite(&contador, sizeof(int), 1, arq);
+
+            fclose(arq);
+            return; // encerra após encontrar e alterar
+        }
+    }
+
+    // Se chegou aqui, não encontrou o funcionário
+    fclose(arq);
+}
